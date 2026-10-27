@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b4e9b">
+<meta name="description" content="Dream Journey Development Agency — সদস্য ও সঞ্চয় ব্যবস্থাপনা ডেমো">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Dream Journey Development Agency</title>
+<style>
+:root{--blue:#0b4e9b;--blue2:#1768b3;--bg:#f1f5fb;--ink:#172033;--muted:#66748b;--line:#dfe7f2;--green:#16834a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,"Noto Sans Bengali",sans-serif;color:var(--ink)}
+.app{max-width:600px;margin:auto;min-height:100vh;background:white;padding-bottom:76px}
+header{background:linear-gradient(135deg,#073b7b,#1768b3);color:#fff;padding:18px 16px 20px}
+.brand{display:flex;gap:12px;align-items:center}.logo{height:54px;width:54px;border-radius:50%;background:#fff;color:var(--blue);display:grid;place-items:center;font-weight:900;font-size:22px;border:3px solid #cfe3ff}
+h1{font-size:18px;margin:0 0 3px}header p{font-size:12px;margin:2px 0;color:#e4efff}
+main{padding:14px}.role{display:flex;gap:8px;margin-bottom:14px}.role button,.nav button{flex:1;border:0;border-radius:10px;padding:11px;background:#eaf1fb;color:#194477;font-weight:700}
+button{cursor:pointer}.role button.active,.nav button.active,.primary{background:var(--blue);color:white}
+h2{font-size:17px;margin:8px 0}.muted{font-size:12px;color:var(--muted);margin:0 0 12px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:9px}.card{padding:13px;border:1px solid var(--line);border-radius:13px}.card span{font-size:12px;color:var(--muted)}.card strong{display:block;color:var(--blue);font-size:20px;margin-top:7px}
+.panel{border:1px solid var(--line);border-radius:13px;padding:13px;margin-top:13px}.panel h3{font-size:14px;margin:0 0 10px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions button{border:1px solid #dbe7f7;background:#f5f8fd;color:#174577;padding:12px 8px;border-radius:10px;text-align:left;font-weight:650}
+label{display:block;font-size:12px;color:var(--muted);margin:12px 0 5px}input,select{width:100%;padding:11px;border:1px solid #d5dfec;border-radius:9px;font:inherit;background:white}
+.primary{width:100%;border:0;border-radius:10px;padding:12px;font-weight:750;margin-top:12px}
+.item{padding:10px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;font-size:13px}.item:last-child{border:0}
+.note{font-size:11px;line-height:1.6;color:#657187;background:#f4f7fb;padding:10px;border-radius:9px;margin-top:13px}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(600px,100%);display:flex;gap:6px;background:white;border-top:1px solid var(--line);padding:8px;z-index:2}.nav button{font-size:11px;padding:10px 3px}
+.hidden{display:none!important}.danger{background:#fff2f2!important;color:#9d2525!important;border-color:#f2d2d2!important}
+@media(min-width:500px){main{padding:20px}header{padding:22px}}
+@media print{.nav,.role,button,.note{display:none!important}body,.app{background:white}}
+</style>
+</head>
+<body><div class="app">
+<header><div class="brand"><div class="logo">DJ</div><div><h1>Dream Journey</h1><h1>Development Agency</h1><p>স্বপ্নযাত্রা উন্নয়ন সংস্থা</p><p>বালাবাড়ীহাট, চিলমারী, কুড়িগ্রাম</p></div></div></header>
+<main>
+<div class="role"><button id="committeeRole" class="active" onclick="setRole('committee')">কমিটি</button><button id="memberRole" onclick="setRole('member')">সদস্য ভিউ</button></div>
+<section id="home">
+<h2 id="heading">কমিটি ড্যাশবোর্ড</h2><p class="muted">স্বপ্ন থেকে সম্ভাবনা, সম্ভাবনা থেকে উন্নয়ন</p>
+<div class="cards">
+<div class="card"><span>মোট সদস্য</span><strong id="membersCount">০</strong></div>
+<div class="card"><span>মোট সঞ্চয়</span><strong id="savingsTotal">৳ ০</strong></div>
+<div class="card"><span>মোট জমা এন্ট্রি</span><strong id="depositCount">০</strong></div>
+<div class="card"><span>মাসিক সঞ্চয় নিয়ম</span><strong id="monthlyRule">পরিবর্তনযোগ্য</strong></div>
+</div>
+<div class="panel" id="committeeActions"><h3>দ্রুত কাজ</h3><div class="actions">
+<button onclick="page('add')">＋ সদস্য যোগ</button><button onclick="page('deposit')">৳ সঞ্চয় জমা</button><button onclick="page('settings')">⚙ সঞ্চয়ের নিয়ম</button><button onclick="page('report')">▤ রিপোর্ট / প্রিন্ট</button>
+</div></div>
+<div class="panel" id="memberActions" hidden><h3>সদস্য সুবিধা</h3><div class="actions"><button onclick="page('ledger')">আমার সঞ্চয়</button><button onclick="page('report')">রিপোর্ট / প্রিন্ট</button></div><p class="muted">ডেমোতে সদস্য ভিউতে প্রথম সদস্যের নমুনা তথ্য দেখানো হয়। বাস্তব সদস্য লগইন এখনো যুক্ত নয়।</p></div>
+<div class="panel"><h3>সাম্প্রতিক লেনদেন</h3><div id="recent"><div class="item">এখনো কোনো লেনদেন নেই</div></div></div>
+<div class="note">এটি পরীক্ষামূলক ডেমো। তথ্য এই ব্রাউজারের local storage-এ থাকে; ফোন/ব্রাউজার বদলালে বা ডেটা মুছলে হারাতে পারে। বাস্তব টাকা পরিচালনা বা সংবেদনশীল তথ্য রাখবেন না।</div>
+</section>
+<section id="add" class="hidden"><h2>সদস্য যোগ করুন</h2><label>সদস্যের নাম</label><input id="name" placeholder="পূর্ণ নাম"><label>মোবাইল নম্বর (ঐচ্ছিক)</label><input id="phone" inputmode="tel" placeholder="01XXXXXXXXX"><label>মাসিক সঞ্চয় (৳)</label><input id="monthly" type="number" min="0" placeholder="যেমন 500"><button class="primary" onclick="addMember()">সদস্য সংরক্ষণ</button></section>
+<section id="deposit" class="hidden"><h2>সঞ্চয় জমা</h2><label>সদস্য</label><select id="memberSelect"></select><label>টাকার পরিমাণ (৳)</label><input id="amount" type="number" min="1" placeholder="পরিমাণ"><label>জমার ধরন</label><select id="kind"><option>মাসিক সঞ্চয়</option><option>অতিরিক্ত সঞ্চয়</option><option>কিস্তি</option></select><button class="primary" onclick="addDeposit()">জমা এন্ট্রি করুন</button></section>
+<section id="settings" class="hidden"><h2>সঞ্চয়ের নিয়ম</h2><p class="muted">নতুন সদস্যের জন্য প্রস্তাবিত মাসিক সঞ্চয় নির্ধারণ করুন। বিদ্যমান সদস্যের নিয়ম আলাদাভাবে পরিবর্তন করা যাবে—এই ডেমোতে নয়।</p><label>ডিফল্ট মাসিক সঞ্চয় (৳)</label><input id="rule" type="number" min="0" placeholder="যেমন 500"><button class="primary" onclick="saveRule()">নিয়ম সংরক্ষণ</button></section>
+<section id="ledger" class="hidden"><h2>সদস্য সঞ্চয়</h2><label>সদস্য নির্বাচন</label><select id="ledgerSelect" onchange="showLedger()"></select><div class="panel" id="ledgerData">সদস্য নির্বাচন করুন।</div></section>
+<section id="report" class="hidden"><h2>রিপোর্ট</h2><div class="panel"><div class="item"><span>সদস্য সংখ্যা</span><b id="reportMembers">০</b></div><div class="item"><span>মোট সঞ্চয়</span><b id="reportSavings">৳ ০</b></div><div class="item"><span>মোট জমা লেনদেন</span><b id="reportTx">০</b></div><button class="primary" onclick="window.print()">প্রিন্ট / PDF সংরক্ষণ</button><button class="primary danger" onclick="exportData()">ডেটা ব্যাকআপ JSON</button></div></section>
+</main>
+<nav class="nav"><button class="active" onclick="page('home',this)">হোম</button><button onclick="page('add',this)">সদস্য</button><button onclick="page('deposit',this)">জমা</button><button onclick="page('ledger',this)">লেজার</button><button onclick="page('report',this)">রিপোর্ট</button></nav>
+</div>
+<script>
+const KEY='dreamJourneyDemo_v1';
+let data={members:[],transactions:[],monthlyRule:500};
+try{data=JSON.parse(localStorage.getItem(KEY))||data}catch(e){}
+const money=n=>'৳ '+Number(n||0).toLocaleString('en-US');
+const bn=n=>Number(n||0).toLocaleString('bn-BD');
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function setRole(r){document.getElementById('committeeRole').classList.toggle('active',r==='committee');document.getElementById('memberRole').classList.toggle('active',r==='member');document.getElementById('heading').textContent=r==='committee'?'কমিটি ড্যাশবোর্ড':'সদস্য ড্যাশবোর্ড';document.getElementById('committeeActions').hidden=r!=='committee';document.getElementById('memberActions').hidden=r!=='member'}
+function page(id,btn){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');if(btn){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}render()}
+function addMember(){let name=document.getElementById('name').value.trim(),phone=document.getElementById('phone').value.trim(),monthly=Number(document.getElementById('monthly').value||data.monthlyRule);if(!name){alert('সদস্যের নাম লিখুন');return}data.members.push({id:Date.now(),name,phone,monthly,savings:0});document.getElementById('name').value='';document.getElementById('phone').value='';document.getElementById('monthly').value='';persist();alert('ডেমোতে সদস্য সংরক্ষণ হয়েছে');page('home')}
+function addDeposit(){let id=Number(document.getElementById('memberSelect').value),amount=Number(document.getElementById('amount').value),kind=document.getElementById('kind').value,m=data.members.find(x=>x.id===id);if(!m||amount<=0){alert('সদস্য ও সঠিক টাকার পরিমাণ দিন');return}m.savings+=amount;data.transactions.unshift({id:Date.now(),memberId:m.id,name:m.name,amount,kind,date:new Date().toLocaleDateString('bn-BD'),receipt:'DJ-'+String(data.transactions.length+1).padStart(5,'0')});document.getElementById('amount').value='';persist();alert('ডেমো জমা সংরক্ষিত হয়েছে');page('home')}
+function saveRule(){let v=Number(document.getElementById('rule').value);if(v<0){alert('সঠিক পরিমাণ দিন');return}data.monthlyRule=v;persist();alert('ডিফল্ট নিয়ম সংরক্ষণ হয়েছে');page('home')}
+function showLedger(){let id=Number(document.getElementById('ledgerSelect').value),m=data.members.find(x=>x.id===id);let tx=data.transactions.filter(t=>t.memberId===id);document.getElementById('ledgerData').innerHTML=m?`<div class="item"><span>নাম</span><b>${esc(m.name)}</b></div><div class="item"><span>মোট সঞ্চয়</span><b>${money(m.savings)}</b></div>`+(tx.map(t=>`<div class="item"><span>${esc(t.kind)} · ${t.date}<br>রশিদ ${t.receipt}</span><b>${money(t.amount)}</b></div>`).join('')||'<p>কোনো জমা নেই।</p>'):'সদস্য নির্বাচন করুন।'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='dream-journey-backup.json';a.click();URL.revokeObjectURL(a.href)}
+function render(){let total=data.members.reduce((s,m)=>s+m.savings,0);document.getElementById('membersCount').textContent=bn(data.members.length);document.getElementById('savingsTotal').textContent=money(total);document.getElementById('depositCount').textContent=bn(data.transactions.length);document.getElementById('monthlyRule').textContent=money(data.monthlyRule);document.getElementById('reportMembers').textContent=bn(data.members.length);document.getElementById('reportSavings').textContent=money(total);document.getElementById('reportTx').textContent=bn(data.transactions.length);
+for(let id of ['memberSelect','ledgerSelect']){let s=document.getElementById(id),old=s.value;s.innerHTML='<option value="">সদস্য নির্বাচন করুন</option>'+data.members.map(m=>`<option value="${m.id}">${esc(m.name)}</option>`).join('');if(old)s.value=old}
+document.getElementById('recent').innerHTML=data.transactions.slice(0,6).map(t=>`<div class="item"><span>${esc(t.name)}<br><small>${esc(t.kind)} · ${t.date} · ${t.receipt}</small></span><b>${money(t.amount)}</b></div>`).join('')||'<div class="item">এখনো কোনো লেনদেন নেই</div>';
+if(document.getElementById('ledgerSelect').value)showLedger()}
+render();
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script></body></html>
